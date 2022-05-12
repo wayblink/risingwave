@@ -23,7 +23,7 @@ impl Expression for ConcatWsExpression {
     }
 
     fn eval(&self, input: &DataChunk) -> Result<ArrayRef> {
-        let sep = self.sep_expr.eval(input)?;
+        let seps = self.sep_expr.eval(input)?;
         let string_columns = self
             .string_exprs
             .iter()
@@ -34,6 +34,7 @@ impl Expression for ConcatWsExpression {
         let len = string_columns[0].len(); // length of each column
 
         for i in 0..len { // iterates between each row
+            // let sep: Option<&str> = seps.datum_at(i);
             let mut data = None;
 
             // for each item in a row

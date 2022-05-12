@@ -218,18 +218,18 @@ impl Binder {
         FunctionCall::new(func_type, inputs)
     }
 
-    pub(super) fn bind_concat_ws(
-        &mut self,
-        sep_expr: Expr,
-        string_exprs: Vec<Expr>,
-    ) -> Result<FunctionCall> {
-        let mut inputs = Vec::new();
-        inputs.push(self.bind_expr(sep_expr)?);
-        for string_expr in string_exprs.iter() {
-            inputs.push(self.bind_expr(string_expr.to_owned())?);
-        }
-        FunctionCall::new(ExprType::ConcatWs, inputs)
-    }
+    // pub(super) fn bind_concat_ws(
+    //     &mut self,
+    //     sep_expr: Expr,
+    //     string_exprs: Vec<Expr>,
+    // ) -> Result<FunctionCall> {
+    //     let mut inputs = Vec::new();
+    //     inputs.push(self.bind_expr(sep_expr)?);
+    //     for string_expr in string_exprs.iter() {
+    //         inputs.push(self.bind_expr(string_expr.to_owned())?);
+    //     }
+    //     FunctionCall::new(ExprType::ConcatWs, inputs)
+    // }
 
     /// Bind `expr (not) between low and high`
     pub(super) fn bind_between(
